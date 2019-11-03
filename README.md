@@ -7,7 +7,7 @@ In my work:
 - I install every piece of required libraries instead of using `create-react-app`.
 - Bootstrap is cool but I know how to survive without it.
 - Deployment using Now.sh with built-in CI/CD fully integrated with this github repository.
-...etc
+- ...etc
 
 Deployment for preview running at: https://gallereasy.now.sh/
 
