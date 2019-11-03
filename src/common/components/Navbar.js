@@ -4,10 +4,13 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const NavbarContainer = styled.div`
-  height: 65px;
   border: none;
   border-bottom: 1px solid #CECED2;
   display: flex;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
   font-weight: lighter;
   a {
     text-decoration: none;
@@ -21,6 +24,9 @@ const Logo = styled.div`
   width: 170px;
   div {
     border-right: 1px solid #CECED2;
+    @media (max-width: 480px) {
+      border-right: none;
+    }
   }
 `;
 
@@ -30,6 +36,9 @@ const Links = styled.div`
   > * {
     padding: 0 15px;
     font-size: 30px;
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
     &.inactive {
       color: #CECED2;
     }
