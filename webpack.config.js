@@ -9,9 +9,8 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
   entry: './src/App.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '/',
   },
   module: {
     rules: [
