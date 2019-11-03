@@ -7,7 +7,7 @@ const NavbarContainer = styled.div`
   border: none;
   border-bottom: 1px solid #CECED2;
   display: flex;
-  @media (max-width: 480px) {
+  @media (max-width: 576px) {
     flex-direction: column;
     padding-bottom: 10px;
   }
@@ -24,7 +24,7 @@ const Logo = styled.div`
   width: 170px;
   div {
     border-right: 1px solid #CECED2;
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       border-right: none;
     }
   }
@@ -36,7 +36,7 @@ const Links = styled.div`
   > * {
     padding: 0 15px;
     font-size: 30px;
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       font-size: 20px;
     }
     &.inactive {

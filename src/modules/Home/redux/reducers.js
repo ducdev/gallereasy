@@ -3,6 +3,7 @@ import {
   SEARCH_OK,
   SEARCH_FAIL,
   LOAD_MORE,
+  NO_MORE,
 } from './actions';
 
 const initialState = {
@@ -30,8 +31,9 @@ export default function (state = initialState, action) {
       return {
         ...state,
         searching: false,
-        searchResult: action.searchResult,
+        searchResult: state.searchResult.concat(action.searchResult),
         isFail: false,
+        hasMore: action.searchResult.length > 0,
       };
     case SEARCH_FAIL:
       return {
@@ -42,8 +44,14 @@ export default function (state = initialState, action) {
     case LOAD_MORE:
       return {
         ...state,
+        searching: true,
         rendered: state.rendered + 8,
-        hasMore: state.searchResult.length === 0 || state.rendered < state.searchResult.length,
+        hasMore: true,
+      };
+    case NO_MORE:
+      return {
+        ...state,
+        hasMore: false,
       };
     default: return state;
   }
