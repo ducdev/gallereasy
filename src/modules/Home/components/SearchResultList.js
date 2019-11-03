@@ -49,7 +49,7 @@ class SearchResultList extends Component {
               disabled={searching}
               onClick={() => loadMore()}
             >
-              {searching ? 'Loading...' : 'Load more'}
+              {searching ? 'Fetching...' : 'Fetch More'}
             </LoadMore>
           )
         }
