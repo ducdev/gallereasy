@@ -14,6 +14,10 @@ const StyledDebounceInput = styled(DebounceInput)`
   color: black;
   padding: 0 20px;
   font-size: 30px;
+  @media (max-width: 480px) {
+    font-size: 20px;
+    height: 40px;
+  }
   font-weight: lighter;
   &::placeholder {
     color: #CECED2;
@@ -24,13 +28,18 @@ const Spinner = styled.div`
   position: absolute;
   width: 30px;
   height: 30px;
+  top: 15px;
+  right: 0;
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+    top: 5px;
+  }
   border: 3px solid lightgrey;
   border-radius: 50%;
   border-top-color: grey;
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
-  top: 15px;
-  right: 0;
 
   @keyframes spin {
     to { -webkit-transform: rotate(360deg); }

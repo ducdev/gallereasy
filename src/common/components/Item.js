@@ -18,10 +18,13 @@ const ItemContainer = styled.div`
   position: relative;
   padding: 10px;
   @media (max-width: 768px) {
-    width: 50%;
+    width: calc(33.33% - 20px);
   }
   @media (max-width: 576px) {
-    width: 100%;
+    width: calc(50% - 20px);
+  }
+  @media (max-width: 480px) {
+    width: calc(100% - 20px);
   }
   &:hover {
     > button {
