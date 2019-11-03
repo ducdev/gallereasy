@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/require-default-props": ["error"],
+    "react/prop-types": 0
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb-base"
+  ],
+  "globals": {
+    "localStorage": true,
+    "document": true,
+    "require": true,
+    "module": true
+  }
+}
