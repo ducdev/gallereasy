@@ -5,6 +5,7 @@ export const SEARCH = 'SEARCH';
 export const SEARCH_OK = 'SEARCH_OK';
 export const SEARCH_FAIL = 'SEARCH_FAIL';
 export const LOAD_MORE = 'LOAD_MORE';
+export const NO_MORE = 'NO_MORE';
 export const API_KEY = 'zaFhcqH1Dbjc704lccPswElrYQQcUI6r';
 
 export const search = (keyword) => (dispatch) => {
@@ -30,4 +31,12 @@ export const addToFavorite = (item) => (dispatch) => {
   dispatch(updateFavorite(favorite));
 };
 
-export const loadMore = () => ({ type: LOAD_MORE });
+export const loadMore = () => (dispatch, getState) => {
+  const { keyword, searchResult } = getState().home;
+  if (keyword && keyword.length >= 0) {
+    dispatch({ type: LOAD_MORE });
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=8&offset=${searchResult.length || 0}&q=${keyword}&rating=G&lang=en`)
+      .then((res) => dispatch({ type: SEARCH_OK, searchResult: res.data.data }))
+      .catch((err) => dispatch({ type: SEARCH_FAIL, err }));
+  }
+};

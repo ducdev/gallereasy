@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { bindActionCreators } from 'redux';
 
 import Item from '../../../common/components/Item';
@@ -10,43 +9,51 @@ import {
 } from '../redux/actions';
 
 const SearchResultListContainer = styled.div`
-  width: 100%;
   padding-top: 15px;
   display: flex;
+  flex-wrap: wrap;
   box-sizing: border-box;
-  > div {
-    width: 100% !important;
-  }
+`;
+
+const LoadMore = styled.button`
+  font-size: 16px;
+  border: 1px solid black;
+  margin: 15px auto;
+  padding: 10px;
 `;
 
 class SearchResultList extends Component {
   render() {
     const {
       searchResult,
-      rendered,
       hasMore,
       loadMore,
       className,
+      searching,
     } = this.props;
     return (
-      <SearchResultListContainer className={className}>
-        <InfiniteScroll
-          dataLength={rendered} // This is important field to render the next data
-          next={() => loadMore()}
-          hasMore={hasMore}
-          loader={<p></p>}
-          endMessage={<p>That&#39;s all above.</p>}
-        >
+      <>
+        <SearchResultListContainer className={className}>
           {
-            searchResult.slice(0, rendered).map((item) => (
+            searchResult.map((item) => (
               <Item
                 isSearch
                 key={item.id}
                 item={item} />
             ))
           }
-        </InfiniteScroll>
-      </SearchResultListContainer>
+        </SearchResultListContainer>
+        {
+          hasMore && searchResult.length >= 8 && (
+            <LoadMore
+              disabled={searching}
+              onClick={() => loadMore()}
+            >
+              {searching ? 'Loading...' : 'Load more'}
+            </LoadMore>
+          )
+        }
+      </>
     );
   }
 }
@@ -56,14 +63,12 @@ const mapStateToProps = (state) => {
     searchResult,
     keyword,
     searching,
-    rendered,
     hasMore,
   } = state.home;
   return {
     searchResult,
     keyword,
     searching,
-    rendered,
     hasMore,
   };
 };
